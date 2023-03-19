@@ -48,11 +48,11 @@ function go(episode) {
 }
 
 function showInventar(){
-   let output =  "<table id='table_inventar' onmouseleave='tt(2);'>";
+   let output =  "<table id='table_inventar' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th>Брой</th><th></th></tr>";
     //inventar.forEach(element=>{sum+=element[teglo];});
     for (let i = 0; i < inventar.length; i++) {
         output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${inventar[i][3]}');"> ${inventar[i][0]}</td><td > ${inventar[i][teglo]}</td><td><button class='get' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
     }
-    
+
     inventar_table.innerHTML=output+"</table>";
 }
