@@ -6,13 +6,13 @@
     </head>
 
     <body>
-        <table id="base_table" >
+        <table id="base_table">
             <tr>
                 <td>
-                    <table >
+                    <table>
                         <tr id="head-row">
-                            <th  ></th>
-                
+                            <th></th>
+
                         </tr>
                         <tr id="row_statistics">
                             <td>
@@ -21,41 +21,35 @@
                                 <div id="num_mana"></div>
                             </td>
                         </tr>
-                        <tr >
+                        <tr>
                             <td>
                                 <div style="display:inline;float:left;width:65px;">Живот: </div>
                                 <div id="life"></div>
                                 <div id="num_life"></div>
                             </td>
                         </tr>
-                        <tr >
+                        <tr>
                             <td>
                                 <div style="display:inline;float:left;width:65px;">Ловкост: </div>
                                 <div id="num_dext"></div>
                             </td>
                         </tr>
-                        <tr >
+                        <tr>
                             <td>
                                 <div style="display:inline;float:left;width:65px;">Сила: </div>
                                 <div id="num_power"></div>
                             </td>
                         </tr>
-                        <tr><td><hr></td></tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <fieldset id="field_equip">
                                     <legend>
                                         Екипировка:
-                                    </legend>
-                                    
-                                </fieldset>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fieldset  id="field_inventar">
-                                    <legend>
-                                        Инвентар:
                                     </legend>
 
                                 </fieldset>
@@ -63,7 +57,20 @@
                         </tr>
                         <tr>
                             <td>
-                                <fieldset id="field_found" >
+                                <fieldset id="field_inventar">
+                                    <legend>
+                                        Инвентар:
+                                    </legend>
+                                    <div id="inventar_table">
+
+                                    </div>
+
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset id="field_found">
                                     <legend>
                                         Намерено:
                                     </legend>
@@ -75,7 +82,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <fieldset id="details" >
+                                <fieldset id="details">
                                     <legend>
                                         Описание:
                                     </legend>
@@ -90,7 +97,9 @@
                 <!--Right content -->
                 <td id="td_content">
                     <table>
-                        <tr><th id="r_content_th"></th></tr>
+                        <tr>
+                            <th id="r_content_th"></th>
+                        </tr>
                         <tr>
                             <td id="r_content"></td>
                         </tr>
@@ -98,11 +107,13 @@
                 </td>
             </tr>
         </table>
-        
+
     </body>
-    
+
+    <script src="config.js"></script>
+    <script src="data.js"></script>
     <script src="classes.js"></script>
     <script src="script.js"></script>
-      <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 
 </html>
