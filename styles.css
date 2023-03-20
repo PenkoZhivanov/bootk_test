@@ -10,9 +10,15 @@ table#table_found{width: 400px;}
 p{padding-left: 5px;}
 #field_found,#field_inventar,#field_equip{min-height: 150px;}
 .get{margin-left:50px;}
+.remove{margin-left: 5px;}
 .bor{cursor:help ;}
 .bor:hover{color:red;}
 p{text-indent: 10px; margin-bottom: -10px;}
 #r_content, #td_content{width: 500px; text-align: left; vertical-align: text-top;}
 #r_content_th{background-color: black;color: aliceblue;font-weight: bold;text-align: center;}
  #td_content{padding-left:150px;}
+ table{
+    table-layout: fixed;
+}
+td{ word-wrap: break-word;}
+.bgreen{font-weight: bold;color:green;}
