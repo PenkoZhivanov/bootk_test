@@ -14,9 +14,31 @@ class Hero {
     setMana(points) {
         this.current_mana += points;
     }
+  
     setLife(points) {
         this.current_life += points;
     }
+
+    
+    addParameters(mana, life, dext, power){
+        this.current_mana += mana;
+        this.current_life += life;
+        this.current_dext += dext;
+       // this.current_stamina += stamina;
+        this.current_power += power;
+        this.showBars();
+    }
+
+    removeParameters(mana, life, dext, power){
+        this.current_mana -= mana;
+        this.current_life -= life;
+        this.current_dext -= dext;
+      //  this.current_stamina -= stamina;
+        this.current_power -= power;
+        this.showBars();
+ 
+    }
+    
     showBars() {
         mana.innerHTML = bar.repeat(this.current_mana);
         num_mana.innerHTML = this.current_mana;

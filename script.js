@@ -35,34 +35,20 @@ function addToInventar(item) {
 }
 
 
-function go(epi) {
-    r_content_th.innerHTML = "Епизод " + epi;
-    console.log(sets[epi]);
-    if (sets[epi]) {
-        var output = "<table id='table_found' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th>Брой</th><th></th></tr>";
-        for (var i = 0; i < sets[epi].length; i++) {
-           
-            if (sets[epi][i][visible] == 0) continue;
-            output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${sets[epi][i][item_detail]}');"> ${sets[epi][i][1]}</td><td > ${sets[epi][i][teglo]}</td><td > ${sets[epi][i][broi]}</td><td><button class='get' onclick='addToInventar(${i})'>Вземи</button></td></tr>`;
-        }
-        found.innerHTML = output + "</table>";
-
-    }
-    episode = epi;
-    r_content.innerHTML = episodes[episode];
-}
 
 function showInventar() {
     let output = "<table id='table_inventar' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th></th></tr>";
     //inventar.forEach(element=>{sum+=element[teglo];});
     for (let i = 0; i < inventar.length; i++) {
         let usable = "Екипирай";
-        if (inventar[i][isUsable]) { usable = "<b class='bgreen'>Използвай</b>";}
-        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${inventar[i][item_detail]}');"> ${inventar[i][item_name]}</td><td > ${inventar[i][teglo]}</td><td><button class='get' onclick='equip(${i})'>${usable}</button><button class='remove' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
+        if (inventar[i][isUsable]) { usable = "<b class='bgreen'>Използвай</b>"; }
+        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${inventar[i][item_detail]}');"> ${inventar[i][item_name]}</td><td > ${inventar[i][teglo]}</td><td><button class='get' onclick='equiping(${i})'>${usable}</button><button class='remove' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
     }
 
     inventar_table.innerHTML = output + "</table>";
 }
+
+
 
 function removeFromInventar(item) {
     var isInCurrentEpisode = false;
@@ -74,12 +60,11 @@ function removeFromInventar(item) {
                     isInCurrentEpisode = true;
                 }
             });
-
     }
 
     if (!isInCurrentEpisode) {
         sets[episode].push(inventar[item]);
-        sets[episode][item][visible]=1;
+        sets[episode][item][visible] = 1;
     }
 
     inventar.splice(item, 1);
@@ -87,13 +72,61 @@ function removeFromInventar(item) {
     go(episode);
 }
 
-function equip(item){
-    
-    if(inventar[item][isUsable]) {
-         hero.setMana(inventar[item][item_life]);
-         hero.showBars();
-    } else {
-        console.log("no");
+
+function showEquip() {
+    let output = "<table id='table_equip' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th></th></tr>";
+    //inventar.forEach(element=>{sum+=element[teglo];});
+    for (let i = 0; i < equip.length; i++) {
+        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${equip[i][item_detail]}');"> ${equip[i][item_name]}</td><td > ${equip[i][teglo]}</td><td><button class='remove' onclick='removeEquiped(${i})'>Изхвърли</button></td></tr>`;
     }
 
+    equiped.innerHTML = output + "</table>";
+}
+
+function removeEquiped(item) {
+    if (equip.length > 0) {
+        inventar.push(equip[item]);
+        hero.removeParameters(equip[item][item_mana], equip[item][item_life], equip[item][item_dexterity], equip[item][item_power]);
+        equip.splice(item, 1);
+        showEquip();
+        showInventar();
+    }
+}
+
+function equiping(item) {
+
+    if (inventar[item][isUsable]) {
+        hero.setMana(inventar[item][item_life]);
+        hero.showBars();
+        inventar.splice(item, 1);
+        showInventar();
+    } else {
+        equip.push(inventar[item]);
+        hero.addParameters(inventar[item][item_mana], inventar[item][item_life], inventar[item][item_dexterity], inventar[item][item_power]);
+        inventar.splice(item, 1);
+        // equip.forEach(element=>{console.log(element); hero.addParameters(element[item_mana],element[item_life],element[item_dexterity],element[item_power]);});
+        // hero.addParameters(equip[item][mana],equip[item][life],equip[item][dext],equip[item][stamina],equip[item][power]);
+        showInventar();
+        showEquip();
+
+    }
+
+}
+
+
+function go(epi) {
+    r_content_th.innerHTML = "Епизод " + epi;
+    // console.log(sets[epi]);
+    if (sets[epi]) {
+        var output = "<table id='table_found' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th>Брой</th><th></th></tr>";
+        for (var i = 0; i < sets[epi].length; i++) {
+
+            if (sets[epi][i][visible] == 0) continue;
+            output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${sets[epi][i][item_detail]}');"> ${sets[epi][i][1]}</td><td > ${sets[epi][i][teglo]}</td><td > ${sets[epi][i][broi]}</td><td><button class='get' onclick='addToInventar(${i})'>Вземи</button></td></tr>`;
+        }
+        found.innerHTML = output + "</table>";
+
+    }
+    episode = epi;
+    r_content.innerHTML = episodes[episode];
 }
