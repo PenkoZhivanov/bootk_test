@@ -37,7 +37,7 @@ function addToInventar(item) {
 
 
 function showInventar() {
-    let output = "<table id='table_inventar' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th></th></tr>";
+    let output = tableForItems;
     //inventar.forEach(element=>{sum+=element[teglo];});
     for (let i = 0; i < inventar.length; i++) {
         let usable = "Екипирай";
@@ -74,10 +74,10 @@ function removeFromInventar(item) {
 
 
 function showEquip() {
-    let output = "<table id='table_equip' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th></th></tr>";
+    let output = tableForItems;
     //inventar.forEach(element=>{sum+=element[teglo];});
     for (let i = 0; i < equip.length; i++) {
-        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${equip[i][item_detail]}');"> ${equip[i][item_name]}</td><td > ${equip[i][teglo]}</td><td><button class='remove' onclick='removeEquiped(${i})'>Изхвърли</button></td></tr>`;
+        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${equip[i][item_detail]}');"> ${equip[i][item_name]}</td><td > ${equip[i][teglo]}</td><td><button class='remove' onclick='removeEquiped(${i})'>Премести</button></td></tr>`;
     }
 
     equiped.innerHTML = output + "</table>";
@@ -96,7 +96,7 @@ function removeEquiped(item) {
 function equiping(item) {
 
     if (inventar[item][isUsable]) {
-        hero.setMana(inventar[item][item_life]);
+        hero.addParameters(inventar[item][item_mana], inventar[item][item_life], inventar[item][item_dexterity], inventar[item][item_power]);
         hero.showBars();
         inventar.splice(item, 1);
         showInventar();
@@ -118,7 +118,7 @@ function go(epi) {
     r_content_th.innerHTML = "Епизод " + epi;
     // console.log(sets[epi]);
     if (sets[epi]) {
-        var output = "<table id='table_found' onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th>Брой</th><th></th></tr>";
+        var output =tableForItems;
         for (var i = 0; i < sets[epi].length; i++) {
 
             if (sets[epi][i][visible] == 0) continue;

@@ -1,4 +1,4 @@
-const bar = "¤";
+const bar = "█";
 var inventar_mass = 20;
 // индекс в масива
 const id = 0;
@@ -9,4 +9,4 @@ const item_detail = 4;
 const visible = 5;
 const item_mana=6,item_life=7,item_dexterity=8,item_power=9;
 const isUsable =10;
-
+const tableForItems ="<table  onmouseleave='tt(2);'><tr><th>Име</th><th>Тегло</th><th></th></tr>";
