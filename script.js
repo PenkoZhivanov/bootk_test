@@ -1,9 +1,7 @@
 var episode = 1;
 var hero = new Hero();
-hero.create(10, 16, 25, 30, 10);
+hero.create(10, 16, 25, 30, 10,5,2,1,0,0,0,0,1);
 hero.showBars();
-var subject = new Thing();
-subject.construct(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 
 go(1);
 
@@ -23,7 +21,7 @@ function addToInventar(item) {
     let sum = 0;
     inventar.forEach(element => { sum += element[teglo]; })
     if (sum + sets[episode][item][teglo] * sets[episode][item][broi] > inventar_mass) {
-        alert('Прекалено тежко!');
+        alert('Достигнат лимит на инвентар!');
         sum = 0;
         return;
     }
@@ -34,21 +32,17 @@ function addToInventar(item) {
     showInventar();
 }
 
-
-
 function showInventar() {
     let output = tableForItems;
     //inventar.forEach(element=>{sum+=element[teglo];});
     for (let i = 0; i < inventar.length; i++) {
         let usable = "Екипирай";
         if (inventar[i][isUsable]) { usable = "<b class='bgreen'>Използвай</b>"; }
-        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${inventar[i][item_detail]}');"> ${inventar[i][item_name]}</td><td > ${inventar[i][teglo]}</td><td><button class='get' onclick='equiping(${i})'>${usable}</button><button class='remove' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
+        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${inventar[i][item_detail]}');"> ${inventar[i][item_name]}</td><td > ${inventar[i][teglo]}</td><td>${inventar[i][broi]}</td><td><button class='get' onclick='equiping(${i})'>${usable}</button><button class='remove' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
     }
 
     inventar_table.innerHTML = output + "</table>";
 }
-
-
 
 function removeFromInventar(item) {
     var isInCurrentEpisode = false;
@@ -61,12 +55,14 @@ function removeFromInventar(item) {
                 }
             });
     }
+console.log(isInCurrentEpisode);
 
-    if (!isInCurrentEpisode) {
+ if (!isInCurrentEpisode) {
+        inventar[item][visible]=1;
         sets[episode].push(inventar[item]);
-        sets[episode][item][visible] = 1;
-    }
-
+        console.log(sets[episode]);
+     }
+ 
     inventar.splice(item, 1);
     showInventar();
     go(episode);
@@ -94,7 +90,7 @@ function removeEquiped(item) {
 }
 
 function equiping(item) {
-
+    if(inventar[item][isUsable]==-1){ return;}
     if (inventar[item][isUsable]) {
         hero.addParameters(inventar[item][item_mana], inventar[item][item_life], inventar[item][item_dexterity], inventar[item][item_power]);
         hero.showBars();
@@ -116,7 +112,6 @@ function equiping(item) {
 
 function go(epi) {
     r_content_th.innerHTML = "Епизод " + epi;
-    // console.log(sets[epi]);
     if (sets[epi]) {
         var output =tableForItems;
         for (var i = 0; i < sets[epi].length; i++) {
@@ -129,4 +124,5 @@ function go(epi) {
     }
     episode = epi;
     r_content.innerHTML = episodes[episode];
+
 }

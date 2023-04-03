@@ -7,7 +7,7 @@ span.founded{float:left;}
 span.tg{float:right;}
 table#table_found{width: 400px;}
 #details{max-width: 250px; width: 250px; word-wrap: break-word;}
-#field_found,#field_inventar,#field_equip{min-height: 150px;}
+#field_found,#field_inventar,#field_equip{min-height: 150px; width: 500px;}
 .get{margin-left:50px;}
 .remove{margin-left: 5px;}
 .bor{cursor:help ;}
