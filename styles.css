@@ -20,3 +20,13 @@ p{text-indent: 10px; margin-bottom: -10px;padding-left: 5px;}
  table{ table-layout: fixed;}
 td{ word-wrap: break-word;}
 .bgreen{font-weight: bold;color:green;}
+#tooltip1{
+    visibility: hidden;
+    background-color: black;
+     color: white; 
+     min-height: 50px;
+     padding:10px; 
+     max-width: 250px;
+     border-top-left-radius: 20px;
+     border-bottom-right-radius: 20px;
+    }

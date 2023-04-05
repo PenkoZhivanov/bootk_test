@@ -10,11 +10,27 @@ go(1);
 
 r_content.innerHTML = episodes[episode];
 r_content_th.innerHTML = "Епизод " + episode;
+//document.addEventListener(mousemove, mouseCoordinates)
 
 showInventar();
 
+ 
+
 function tt(vis, episode) {
     vis == 1 ? document.getElementById("tooltip").innerHTML = episode : document.getElementById("tooltip").innerHTML = "";
+    var x = event.clientX;
+    var y = event.clientY;
+    var element = document.getElementById("tooltip1");
+    console.log(episode);
+    if(episode!="undefined"){
+    element.style.position="absolute";
+    element.style.top=y-50+"px";
+    element.style.left=x+30+"px";
+    element.innerHTML = episode;
+    element.style.visibility="visible";
+    }
+    if(vis==2)   element.style.visibility="hidden";
+    
 }
 
 function addToInventar(item) {
@@ -38,7 +54,7 @@ function showInventar() {
     for (let i = 0; i < inventar.length; i++) {
         let usable = "Екипирай";
         if (inventar[i][isUsable]) { usable = "<b class='bgreen'>Използвай</b>"; }
-        output = `${output}<tr ><td class="bor" onmouseover="tt(1,'${inventar[i][item_detail]}');"> ${inventar[i][item_name]}</td><td > ${inventar[i][teglo]}</td><td>${inventar[i][broi]}</td><td><button class='get' onclick='equiping(${i})'>${usable}</button><button class='remove' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
+        output = `${output}<tr ><td> <span class="bor" onmouseover="tt(1,'${inventar[i][item_detail]}');"> ${inventar[i][item_name]}</span></td><td > ${inventar[i][teglo]}</td><td>${inventar[i][broi]}</td><td><button class='get' onclick='equiping(${i})'>${usable}</button><button class='remove' onclick='removeFromInventar(${i})'>Изхвърли</button></td></tr>`;
     }
 
     inventar_table.innerHTML = output + "</table>";
@@ -55,7 +71,7 @@ function removeFromInventar(item) {
                 }
             });
     }
-console.log(isInCurrentEpisode);
+ 
 
  if (!isInCurrentEpisode) {
         inventar[item][visible]=1;
